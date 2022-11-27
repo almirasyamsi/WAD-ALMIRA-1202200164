@@ -26,7 +26,7 @@
             header("location:Home-Almira.php?alert=gagal-memuat");
         }else{	
             $xx = $rand.'_'.$filename;
-            move_uploaded_file($_FILES['gambar']['tmp_name'], 'asset/images/'.$rand.'_'.$filename);
+            move_uploaded_file($_FILES['gambar']['tmp_name'], '../asset/images/'.$rand.'_'.$filename);
             $postEvent = mysqli_query($connect, "INSERT INTO showroom_almira_table VALUES ('$id_mobil', '$namamobil', '$pemilik', '$mobil', '$tgl', '$desc', '$xx','$status')");
             header("location:ListCar-Almira.php");
         }
@@ -47,7 +47,7 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
         <a 
             href="Home-Almira.php"
             class="navbar-brand mb-0 h1">
@@ -81,6 +81,15 @@
                 <a href="ListCar-Almira" class="nav-link active">
                     MyCar
                 </a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="far fa-user"></i> &nbsp; <?= $nama; ?>
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item text-primary" href="Profile-Almira.php"><i class="fas fa-user-edit"></i>&nbsp; Profile</a></li>
+                    <li><a class="dropdown-item text-primary" href="Logout-Almira.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>
+                </ul>
             </li>
         </ul>
         </div>

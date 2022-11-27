@@ -10,6 +10,7 @@
     $id_mobil = $_GET['id_mobil'];
     $query = "SELECT * FROM showroom_almira_table WHERE id_mobil = '$id_mobil'";
     $detail = mysqli_query($connect, $query);
+    $data = mysqli_fetch_array($detail);
 ?>
 
 <!doctype html>
@@ -27,7 +28,7 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
         <a 
             href="Home-Almira.php"
             class="navbar-brand mb-0 h1">
@@ -62,6 +63,15 @@
                     MyCar
                 </a>
             </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="far fa-user"></i> &nbsp; <?= $nama; ?>
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item text-primary" href="Profile-Almira.php"><i class="fas fa-user-edit"></i>&nbsp; Profile</a></li>
+                    <li><a class="dropdown-item text-primary" href="Logout-Almira.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>
+                </ul>
+            </li>
         </ul>
         </div>
         <div class="container-fluid">
@@ -74,27 +84,27 @@
     <div class="container mt-5 pt-5">
             <div class="card shadow">
                 <h3 class="text-center pt-4 fw-bold">DETAIL MOBIL</h3>
-                <?php foreach($detail as $data) {?>
+                <?php ?>
                     <div style="margin-left:15px;margin-right:15px;margin-bottom:15px" class="text-center">
-                        <img class="my-3" src="asset/images/<?php echo $data['gambar']?>" alt="gambar" class="card-img-top" width="400px">
+                        <img class="my-3" src="../asset/images/<?php echo $data['foto_mobil']?>" alt="foto_mobil" class="card-img-top" width="400px">
                         <hr style="border:2px solid blue;width:95%;margin-left:27px">
                     </div>
                     <div style="margin-left:45px;margin-right:15px;margin-bottom:15px">
                         <div class="mb-3">
-                            <label for="nmobill" class="fw-bold">Nama Mobil:</label>
-                            <p><?= $data['nmobil']?></p>
+                            <label for="nama_mobil" class="fw-bold">Nama Mobil:</label>
+                            <p><?= $data['nama_mobil']?></p>
                         </div>
                         <div class="mb-3">
                             <label for="npemilik" class="fw-bold">Nama Pemilik:</label>
                             <p><?= $nama?></p>
                         </div>
                         <div class="mb-3">
-                            <label for="mmobil" class="fw-bold">Merk:</label>
-                            <p><?= $data['mmobil']?></p>
+                            <label for="merk_mobil" class="fw-bold">Merk:</label>
+                            <p><?= $data['merk_mobil']?></p>
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal" class="fw-bold">Tanggal Beli:</label>
-                            <p><?= $data['tanggal']?></p>
+                            <label for="tanggal_beli" class="fw-bold">Tanggal Beli:</label>
+                            <p><?= $data['tanggal_beli']?></p>
                         </div>
                         <div class="mb-3">
                             <label for="desc" class="fw-bold">Deskripsi:</label>
@@ -117,20 +127,20 @@
                                     <div class="modal-body">
                                         <form action="ListCar-Almira.php" method="post" enctype="multipart/form-data">
                                             <div class="mb-3">
-                                                <label for="nmobil" class="form-label fw-bold">Nama Mobil</label>
-                                                <input type="text" class="form-control" id="nmobil" name="nmobil" value="<?= $data['nmobil']?>">
+                                                <label for="nama_mobil" class="form-label fw-bold">Nama Mobil</label>
+                                                <input type="text" class="form-control" id="nama_mobil" name="nama_mobil" value="<?= $data['nama_mobil']?>">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="npemilik" class="form-label fw-bold">Penulis</label>
                                                 <input type="text" class="form-control" id="npemilik" name="npemilik" value="<?= $nama ?>" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="mmobil" class="form-label fw-bold">Merk</label>
-                                                <input type="text" class="form-control" id="mmobil" name="mmobil" value="<?= $data['mmobil']?>">
+                                                <label for="merk_mobil" class="form-label fw-bold">Merk</label>
+                                                <input type="text" class="form-control" id="merk_mobil" name="merk_mobil" value="<?= $data['merk_mobil']?>">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="tanggal" class="form-label fw-bold">Tanggal</label>
-                                                <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= $data['tanggal']?>">
+                                                <label for="tanggal_beli" class="form-label fw-bold">Tanggal</label>
+                                                <input type="text" class="form-control" id="tanggal_beli" name="tanggal_beli" value="<?= $data['tanggal_beli']?>">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="desc" class="form-label fw-bold">Deskripsi</label>
@@ -139,17 +149,17 @@
                                             <div class="mb-3">
                                                 <label class="fw-bold">Foto</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                                    <input type="file" class="custom-file-input" id="foto_mobil" name="foto_mobil">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="status" class="form-label fw-bold">Status Pembayaran</label>
+                                                <label for="status_pembayaran" class="form-label fw-bold">Status Pembayaran</label>
                                                 <div class="form-check form-check-inline" style="margin-left:15px">
-                                                    <input class="form-check-input" type="radio" name="status" id="status" value="indonesia" <?php echo ($data['status']=='lunas' ? 'checked' : '');?>>
+                                                    <input class="form-check-input" type="radio" name="status_pembayaran" id="status_pembayaran" value="lunas" <?php echo ($data['status_pembayaran']=='lunas' ? 'checked' : '');?>>
                                                     <label class="form-check-label" for="inlineRadio1">Lunas</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="status" id="status" value="lainnya" <?php echo ($data['status']=='belum lunas' ? 'checked' : '');?>>
+                                                    <input class="form-check-input" type="radio" name="status_pembayaran" id="status_pembayaran" value="belum lunas" <?php echo ($data['status_pembayaran']=='belum lunas' ? 'checked' : '');?>>
                                                     <label class="form-check-label" for="inlineRadio2">Belum Lunas</label>
                                                 </div>
                                             </div>
@@ -171,7 +181,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Apakah anda yakin inggin menghapus list mobil ini ?</p>
+                                        <p>Apakah anda yakin ingin menghapus list mobil ini ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -183,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                <?php }?>
+                <?php ?>
             </div>
      </div>
 </body>

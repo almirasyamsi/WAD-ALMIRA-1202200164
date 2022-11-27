@@ -13,7 +13,7 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
         <a 
             href="Home-Almira.php"
             class="navbar-brand mb-0 h1">
@@ -48,7 +48,6 @@
                     MyCar
                 </a>
             </li>
-        </ul>
         </div>
         <div class="container-fluid">
                 <a class="btn btn-primary" href="Add-Almira.php">Add Car</a>
@@ -75,9 +74,9 @@
             ?>
 
             <div class="card mx-1" style="width:18rem;">
-                <img src="asset/images/<?php echo $data['gambar']?>" alt="foto" class="card-img-top">
+                <img src="../asset/images/<?php echo $data['foto_mobil']?>" alt="foto_mobil" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $data['namamobil']?></h5>
+                    <h5 class="card-title"><?= $data['nama_mobil']?></h5>
                     <p class="card-text"><?= $data['deskripsi']?></p>
                     <a class="btn btn-primary" href="Detail-Almira.php?id_mobil=<?=$data['id_mobil']?>">Detail</a>
                 </div>

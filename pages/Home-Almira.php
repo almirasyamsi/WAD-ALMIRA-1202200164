@@ -1,3 +1,24 @@
+<?php
+session_start();
+require 'Function-Almira.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: Login-Almira.php");
+    exit;
+}else {
+  if (isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+          $id=$_COOKIE["id"];
+        }else {
+         $id=$_SESSION["id"];
+       }
+ 
+
+  $result=mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+  $row =mysqli_fetch_assoc($result);
+  $nama=$row["nama"];
+
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,19 +29,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-7mQhpDl5nRA5nY9lr8F1st2NbIly/8WqhjTp+0oFxEA/QUuvlbF6M1KXezGBh3Nb" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     
     <title>EAD Rent Car</title>
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
         <a 
             href="Home-Almira.php"
             class="navbar-brand mb-0 h1">
-                <img
-                class="d-inline-block align-top"
-                src="https://drive.google.com/uc?export=view&id=1hqBNDU1Tx1RKd8wzC1bmnhwBr-7YsK23"
-                width="150" height="50" />
+            <img
+            class="d-inline-block align-top"
+            src="https://drive.google.com/uc?export=view&id=1hqBNDU1Tx1RKd8wzC1bmnhwBr-7YsK23"
+            width="150" height="50" />
         </a>
         <button 
         type="button"
@@ -47,6 +69,15 @@
                 <a href="Add-Almira.php" class="nav-link">
                     MyCar
                 </a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="far fa-user"></i> &nbsp; <?= $nama; ?>
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item text-primary" href="Profile-Almira.php"><i class="fas fa-user-edit"></i>&nbsp; Profile</a></li>
+                    <li><a class="dropdown-item text-primary" href="Logout-Almira.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>
+                </ul>
             </li>
         </ul>
         </div>

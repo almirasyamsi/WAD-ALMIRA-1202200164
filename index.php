@@ -1,5 +1,5 @@
 <?php
 
-require 'Home-Almira.php'
+require './pages/Home-Almira.php';
 
 ?>
