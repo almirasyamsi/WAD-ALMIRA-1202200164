@@ -3,7 +3,7 @@
 
   require 'Function-Almira.php';
 
-  if (!isset($_SESSION["login"])) {
+  if (!isset(["login"])) {
     header("Location: Login-Almira.php");
     return false;
 
