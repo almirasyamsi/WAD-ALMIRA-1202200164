@@ -3,7 +3,7 @@
     require 'Function-Almira.php';
 
     //cek ada cookie?
-    if (isset(['id']) && isset($_COOKIE['key'])) {
+    if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         $id = $_COOKIE['id'];
         $key = $_COOKIE['key'];
 
